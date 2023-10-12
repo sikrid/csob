@@ -20,7 +20,7 @@
 
         HttpClient client = new HttpClient();
 
-        foreach(var endpoint in Data.Endpoints.HealthEndpoints)
+        foreach(var endpoint in Data.Endpoints.ServicesEndpoint)
         {
             var status = await client.GetStringAsync($"{endpoint.Value}/health");
 
