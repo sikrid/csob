@@ -2,36 +2,58 @@
 
 <h3>Status</h3>
 
-@foreach(var apistatus in States)
+@foreach (var apistatus in States)
 {
-    <p>@apistatus.Key : @apistatus.Value</p>
+	<p>@apistatus.Key : <span class="@GetStateClass(@apistatus.Value)">@apistatus.Value</span></p>
 }
 
 @code {
 
-    /// <summary>
-    /// NazevAPI, status
-    /// </summary>
-    Dictionary<string, string> States = new Dictionary<string, string>();
+	/// <summary>
+	/// NazevAPI, status
+	/// </summary>
+	Dictionary<string, string> States = new Dictionary<string, string>()
+	{	
+	};
 
-    protected override async Task OnInitializedAsync()
-    {
-        await Task.Delay(TimeSpan.FromSeconds(5));
+	protected override async Task OnInitializedAsync()
+	{
+		await Task.Delay(TimeSpan.FromSeconds(5));
 
-        HttpClient client = new HttpClient();
+		HttpClient client = new HttpClient();
 
-        foreach(var endpoint in Data.Endpoints.ServicesEndpoint)
-        {
-            var status = await client.GetStringAsync($"{endpoint.Value}/health");
+		foreach (var endpoint in Data.Endpoints.ServicesEndpoint)
+		{
+			var status = await client.GetStringAsync($"{endpoint.Value}/health");
 
-            if(States.ContainsKey(endpoint.Key))
-            {
-                States[endpoint.Key] = status;
-            }
-            else
-            {
-                States.Add(endpoint.Key, status);
-            }
-        }
-    }
+			if (States.ContainsKey(endpoint.Key))
+			{
+				States[endpoint.Key] = status;
+			}
+			else
+			{
+				States.Add(endpoint.Key, status);
+			}
+		}
+	}
+
+	private string GetStateClass(string status)
+	{
+		if (string.IsNullOrEmpty(status))
+		{
+			return "";
+		}
+
+		switch (status.ToUpper())
+		{
+			case "HEALTHY":
+				return "text-success";
+			case "UNHEALTHY":
+				return "text-danger";
+			case "WARN":
+				return "text-warning";
+			default:
+				return "text-info";
+		}
+	}
 }
