@@ -8,8 +8,8 @@ namespace ClientAPI.Data
         public DbSet<Client> Clients { get; set; }
 
         public ClientDbContext(DbContextOptions<ClientDbContext> options) : base(options)
-
         {
         }
+
     }
 }

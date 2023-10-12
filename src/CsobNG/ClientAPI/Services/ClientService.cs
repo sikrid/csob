@@ -1,26 +1,27 @@
 ﻿
+using ClientAPI.Data;
 using Model;
 
 namespace ClientAPI.Services
 {
     public class ClientService
     {
-        private List<Client> Clients { get; set; } = new List<Client>()
+        ClientDbContext _context;
+
+        public ClientService(ClientDbContext context)
         {
-            new Client() { Id = 1, FirstName = "Karel", LastName = "Čtrvtý", Email = "karel@ctvrty.cz" },
-            new Client() { Id = 2, FirstName = "Jenda", LastName = "Novák", Email = "jenda@novak.cz" }
-        };
+            _context = context;
+        }
 
         public List<Client> GetClients()
         {
-            return Clients;
+            return _context.Clients.ToList();
         }
 
         public void AddClient(Client client)
         {
-            int id = Clients.Max(x => x.Id) + 1;
-            client.Id = id;
-            Clients.Add(client);
+            _context.Clients.Add(client);
+            _context.SaveChanges();
         }
     }
 }
