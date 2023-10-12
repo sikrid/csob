@@ -1,14 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
-namespace ClientAPI.Controllers
+namespace ClientBFF.Controllers
 {
     [Route("[controller]")]
     [ApiController]
     public class HealthController : ControllerBase
     {
         [HttpGet("")]
-        
+
         public ActionResult<string> GetStatus()
         {
             return Ok("healthy");

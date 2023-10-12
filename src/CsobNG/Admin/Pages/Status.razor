@@ -1,0 +1,37 @@
+﻿@page "/status"
+
+<h3>Status</h3>
+
+@foreach(var apistatus in States)
+{
+    <p>@apistatus.Key : @apistatus.Value</p>
+}
+
+@code {
+
+    /// <summary>
+    /// NazevAPI, status
+    /// </summary>
+    Dictionary<string, string> States = new Dictionary<string, string>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(TimeSpan.FromSeconds(5));
+
+        HttpClient client = new HttpClient();
+
+        foreach(var endpoint in Data.Endpoints.HealthEndpoints)
+        {
+            var status = await client.GetStringAsync($"{endpoint.Value}/health");
+
+            if(States.ContainsKey(endpoint.Key))
+            {
+                States[endpoint.Key] = status;
+            }
+            else
+            {
+                States.Add(endpoint.Key, status);
+            }
+        }
+    }
+}
