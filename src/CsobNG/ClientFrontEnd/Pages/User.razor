@@ -3,6 +3,7 @@
 
 @if (LoginState == LoginStatus.NotLoggedIn)
 {
+    <p>Please input email for login</p>
     <InputText @bind-Value="_userEmail" />
     <button @onclick="Login">Login</button>
 }
