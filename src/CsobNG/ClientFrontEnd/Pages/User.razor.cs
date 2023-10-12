@@ -54,8 +54,11 @@ public partial class User
 
     private async Task SendLoanRequest()
     {
-        await Http.PostAsJsonAsync($"http://localhost:5025/loanrequest/", _loanRequest);
+        _loanRequest!.ClientId = Client!.Id;
+        var v = await Http.PostAsJsonAsync($"http://localhost:5025/loanrequest/", _loanRequest);
         await GetLoanRequests();
+        _loanRequest = new();
+        StateHasChanged();
     }
 
     private enum LoginStatus
