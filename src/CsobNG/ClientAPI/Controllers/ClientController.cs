@@ -6,7 +6,7 @@ using Model;
 
 namespace ClientAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class ClientController : ControllerBase
     {
@@ -42,7 +42,7 @@ namespace ClientAPI.Controllers
                 return BadRequest();
             }
 
-            _clientService.AddClient(client);
+            _clientService.CreateClient(client);
 
             return Ok(client.Id);
         }

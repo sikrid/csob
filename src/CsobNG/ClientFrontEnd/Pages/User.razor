@@ -1,0 +1,34 @@
+﻿@page "/user"
+<h3>User Info</h3>
+
+@if (LoginState == LoginStatus.NotLoggedIn)
+{
+    <InputText @bind-Value="_userEmail" />
+    <button @onclick="Login">Login</button>
+}
+else if(LoginState == LoginStatus.LoggedIn && Client is not null)
+{
+    <div>Logged in as: @Client.Email</div>
+    <div>@Client.Id</div>
+    <div>@Client.FirstName</div>
+    <div>@Client.LastName</div>
+
+    if (_loanRequests is not null)
+    {
+        foreach (var loanRequest in _loanRequests)
+        {
+            <div>@loanRequest.RequestedAmount</div>
+            <div>@loanRequest.State</div>
+            <div>@loanRequest.DateChanged</div>
+            <div>@loanRequest.StatusChangedLog</div>
+        }
+    }
+
+    <button @onclick="Logout">Logout</button>
+}
+else if (LoginState == LoginStatus.LoggingIn)
+{
+    <div>Logging in...</div>
+
+    <FetchData />
+}
