@@ -5,6 +5,7 @@ using System;
 using System.Net;
 using System.Text.Json;
 using System.Collections.Generic;
+using System.Net.Http.Json;
 
 namespace ClientBFF.Controllers
 {
@@ -28,21 +29,18 @@ namespace ClientBFF.Controllers
             }
             catch
             {
-                return NotFound(new List<LoanRequest>());
+                return Ok(new List<LoanRequest>());
             }
         }
 
-        [Route("{loanRequest}")]
         [HttpPost]
         public async Task<ActionResult<LoanRequest>> AddLoanRequest(LoanRequest loanRequest)
         {
             HttpClient http = new HttpClient();
 
-            var json = JsonSerializer.Serialize(loanRequest);
-
             try
             {
-                var request = await http.PostAsync($"{LoanRequestAPIurl}/loanrequest", new StringContent(json));
+                var request = await http.PostAsJsonAsync($"{LoanRequestAPIurl}/loanrequest", loanRequest);
 
                 return Ok(request);
             }

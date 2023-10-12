@@ -19,14 +19,14 @@ namespace ClientBFF.Controllers
 
             var result = await http.GetAsync($"{ClientAPIurl}/Client/ByEmail/{email}");
 
-            if (!result.IsSuccessStatusCode)
+            if (result.IsSuccessStatusCode)
             {
-                return NotFound(email);
+                var client = result.Content.ReadFromJsonAsync<Client>();
+                
+                return Ok(client.Result);
             }
-            else
-            {
-                return Ok(new StringContent(result.Content.ToString()));
-            }
+
+            return Ok($"{email} not found - chyba 6371843");
         }
     }
 }
