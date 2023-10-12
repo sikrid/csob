@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34018.315
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientAPI", "ClientAPI\ClientAPI.csproj", "{CDB6A110-7240-4E0C-9533-EA6941C83ABB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientAPI", "ClientAPI\ClientAPI.csproj", "{CDB6A110-7240-4E0C-9533-EA6941C83ABB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanRequestAPI", "LoanRequestAPI\LoanRequestAPI.csproj", "{842DD337-20FB-4435-8563-89A521DF8E00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoanRequestAPI", "LoanRequestAPI\LoanRequestAPI.csproj", "{842DD337-20FB-4435-8563-89A521DF8E00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailsAPI", "EmailsAPI\EmailsAPI.csproj", "{1AD7AB4E-1B4D-415C-9B9E-A85B69440D62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailsAPI", "EmailsAPI\EmailsAPI.csproj", "{1AD7AB4E-1B4D-415C-9B9E-A85B69440D62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientBFF", "ClientBFF\ClientBFF.csproj", "{2E94A670-9455-4B5D-B58F-8B6D9FEEF829}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientBFF", "ClientBFF\ClientBFF.csproj", "{2E94A670-9455-4B5D-B58F-8B6D9FEEF829}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientFrontEnd", "ClientFrontEnd\ClientFrontEnd.csproj", "{42008EA6-1283-46F9-898B-0B224A5BDB15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientFrontEnd", "ClientFrontEnd\ClientFrontEnd.csproj", "{42008EA6-1283-46F9-898B-0B224A5BDB15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Admin", "Admin\Admin.csproj", "{6FC16A99-8FAA-43DF-80FF-70D27B59C8F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Admin", "Admin\Admin.csproj", "{6FC16A99-8FAA-43DF-80FF-70D27B59C8F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
