@@ -1,0 +1,39 @@
+﻿@page "/LoanRequests"
+@using Model;
+
+
+<h3>Loan requests</h3>
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>ClientId</th>
+        <th>RequestedAmount</th>
+        <th>State</th>
+        <th>Log</th>
+        <th>Changed</th>
+    </tr>
+    @foreach (var request in LoanRequests)
+{
+    <tr>
+            <td>@request.Id</td>
+            <td>@request.ClientId</td>
+            <td>@request.RequestedAmount</td>
+            <td>@request.State</td>
+            <td>@request.StatusChangedLog</td>
+            <td>@request.DateChanged.ToShortDateString()</td>
+    </tr>
+}
+</table>
+@code {
+
+    List<LoanRequest> LoanRequests = new List<LoanRequest>();
+
+    const string SERVICE_NAME = "LoanRequestAPI";
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(TimeSpan.FromSeconds(5));
+
+        var client = new HttpClient();
+        LoanRequests = await client.GetFromJsonAsync<List<LoanRequest>>($"{Data.Endpoints.ServicesEndpoint[SERVICE_NAME]}/Requests");
+    }
+}

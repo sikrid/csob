@@ -13,7 +13,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<ClientService>();
+builder.Services.AddScoped<ClientService>();
 
 var app = builder.Build();
 

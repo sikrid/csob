@@ -23,5 +23,16 @@ namespace ClientAPI.Services
             _context.Clients.Add(client);
             _context.SaveChanges();
         }
+
+        public Client GetClientByEmail(string email)
+        {
+            var client = _context.Clients.FirstOrDefault(x => x.Email.ToUpper() == email.ToUpper());
+            if (client == null)
+            {
+                return null;
+            }
+
+            return client;
+        }
     }
 }

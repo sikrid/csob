@@ -5,7 +5,7 @@
         /// <summary>
         /// Nazev API, URL
         /// </summary>
-        public static Dictionary<string, string> HealthEndpoints =
+        public static Dictionary<string, string> ServicesEndpoint =
             new Dictionary<string, string>()
             {
                 {"ClientAPI", "http://localhost:5208" },
