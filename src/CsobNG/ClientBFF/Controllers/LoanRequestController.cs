@@ -4,6 +4,8 @@ using System.Net.Http;
 using System;
 using System.Net;
 using System.Text.Json;
+using System.Collections.Generic;
+using System.Net.Http.Json;
 
 namespace ClientBFF.Controllers
 {
@@ -22,39 +24,29 @@ namespace ClientBFF.Controllers
             try
             {
                 var list = await http.GetFromJsonAsync<List<LoanRequest>>($"{LoanRequestAPIurl}/loanrequest/client/{id}");
+
                 return Ok(list);
             }
-            catch (Exception ex)
+            catch
             {
                 return Ok(new List<LoanRequest>());
             }
-            //if (list == null)
-            //{
-            //    return NotFound(list);
-            //}
-            //else
-            //{
-            //    return Ok(list);
-            //}
         }
 
-        [Route("{loanRequest}")]
         [HttpPost]
         public async Task<ActionResult<LoanRequest>> AddLoanRequest(LoanRequest loanRequest)
         {
             HttpClient http = new HttpClient();
 
-            var json = JsonSerializer.Serialize(loanRequest);
-
-            var request = await http.PostAsync($"{LoanRequestAPIurl}/loanrequest", new StringContent(json));
-
-            if (request == null)
+            try
             {
-                return NotFound(request);
-            }
-            else
-            {
+                var request = await http.PostAsJsonAsync($"{LoanRequestAPIurl}/loanrequest", loanRequest);
+
                 return Ok(request);
+            }
+            catch
+            {
+                return NotFound("Chyba 765942");
             }
         }
     }

@@ -17,16 +17,16 @@ namespace ClientBFF.Controllers
         {
             HttpClient http = new HttpClient();
 
-            var client = await http.GetFromJsonAsync<Client>($"{ClientAPIurl}/Client/ByEmail/{email}");
+            var result = await http.GetAsync($"{ClientAPIurl}/Client/ByEmail/{email}");
 
-            if (client == null)
+            if (result.IsSuccessStatusCode)
             {
-                return NotFound(email);
+                var client = result.Content.ReadFromJsonAsync<Client>();
+                
+                return Ok(client.Result);
             }
-            else
-            {
-                return Ok(client);
-            }
+
+            return Ok($"{email} not found - chyba 6371843");
         }
     }
 }
