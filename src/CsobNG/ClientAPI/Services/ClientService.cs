@@ -18,10 +18,21 @@ namespace ClientAPI.Services
             return _context.Clients.ToList();
         }
 
-        public void AddClient(Client client)
+        public void CreateClient(Client client)
         {
             _context.Clients.Add(client);
             _context.SaveChanges();
+        }
+
+        public Client GetClientByEmail(string email)
+        {
+            var client = _context.Clients.FirstOrDefault(x => x.Email.ToUpper() == email.ToUpper());
+            if (client == null)
+            {
+                return null;
+            }
+
+            return client;
         }
     }
 }
