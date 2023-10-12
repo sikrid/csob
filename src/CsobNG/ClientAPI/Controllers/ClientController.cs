@@ -42,7 +42,7 @@ namespace ClientAPI.Controllers
                 return BadRequest();
             }
 
-            _clientService.AddClient(client);
+            _clientService.CreateClient(client);
 
             return Ok(client.Id);
         }
