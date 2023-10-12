@@ -13,18 +13,42 @@
 	/// NazevAPI, status
 	/// </summary>
 	Dictionary<string, string> States = new Dictionary<string, string>()
-	{	
+	{
 	};
+
+	private System.Timers.Timer _timer;
 
 	protected override async Task OnInitializedAsync()
 	{
 		await Task.Delay(TimeSpan.FromSeconds(5));
+		await ReadStatus();
 
+		_timer = new System.Timers.Timer(10000);
+		_timer.Elapsed += async (sender, e) =>
+		{
+			await ReadStatus();
+			StateHasChanged();
+		};
+		_timer.AutoReset = true;
+		_timer.Start();
+	}
+
+	private async Task ReadStatus()
+	{
 		HttpClient client = new HttpClient();
 
 		foreach (var endpoint in Data.Endpoints.ServicesEndpoint)
 		{
-			var status = await client.GetStringAsync($"{endpoint.Value}/health");
+			string status = "";
+			try
+			{
+				status = await client.GetStringAsync($"{endpoint.Value}/health");
+			}
+			catch (Exception ex)
+			{
+				// log
+				status = "Endpoint error";
+			}
 
 			if (States.ContainsKey(endpoint.Key))
 			{
@@ -35,6 +59,11 @@
 				States.Add(endpoint.Key, status);
 			}
 		}
+	}
+
+	public void Dispose()
+	{
+		_timer?.Dispose();
 	}
 
 	private string GetStateClass(string status)
@@ -49,6 +78,8 @@
 			case "HEALTHY":
 				return "text-success";
 			case "UNHEALTHY":
+			case "DB DISCONNECT":
+			case "ENDPOINT ERROR":
 				return "text-danger";
 			case "WARN":
 				return "text-warning";
