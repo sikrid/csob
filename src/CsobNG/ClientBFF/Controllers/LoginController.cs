@@ -17,15 +17,15 @@ namespace ClientBFF.Controllers
         {
             HttpClient http = new HttpClient();
 
-            var client = await http.GetFromJsonAsync<Client>($"{ClientAPIurl}/ByEmail/{email}");
+            var result = await http.GetAsync($"{ClientAPIurl}/Client/ByEmail/{email}");
 
-            if (client == null)
+            if (!result.IsSuccessStatusCode)
             {
                 return NotFound(email);
             }
             else
             {
-                return Ok(client);
+                return Ok(new StringContent(result.Content.ToString()));
             }
         }
     }
