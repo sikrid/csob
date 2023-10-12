@@ -29,6 +29,20 @@ namespace LoanRequestAPI.Services
             return result;
         }
 
+        public bool TryDbConnection()
+        {
+            try
+            {
+                var data = _context.LoanRequests.FirstOrDefault();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+		}
+
         internal object GetLoanRequests()
         {
             return _context.LoanRequests.ToList();

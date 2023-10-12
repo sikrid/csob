@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LoanRequestAPI.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace LoanRequestAPI.Controllers
 {
@@ -6,11 +7,25 @@ namespace LoanRequestAPI.Controllers
     [ApiController]
     public class HealthController : ControllerBase
     {
-        [HttpGet("")]
+		LoanRequestService _loanRequestService;
+
+		public HealthController(LoanRequestService loanRequestService)
+		{
+			_loanRequestService = loanRequestService;
+		}
+
+		[HttpGet("")]
 
         public ActionResult<string> GetStatus()
         {
-            return Ok("healthy");
-        }
+			if (!_loanRequestService.TryDbConnection())
+			{
+				return Ok("DB Disconnect");
+			}
+			else
+			{
+				return Ok("healthy");
+			}
+		}
     }
 }

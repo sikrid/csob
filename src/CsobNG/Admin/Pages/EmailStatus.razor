@@ -32,6 +32,6 @@
         await Task.Delay(TimeSpan.FromSeconds(5));
 
         var client = new HttpClient();
-        Emails = await client.GetFromJsonAsync<List<Email>>($"{Data.Endpoints.ServicesEndpoint[SERVICE_NAME]}/Emails");
+        Emails = await client.GetFromJsonAsync<List<Email>>($"{Data.Endpoints.ServicesEndpoint[SERVICE_NAME]}/Email");
     }
 }
