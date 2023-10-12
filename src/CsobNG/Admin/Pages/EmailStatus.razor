@@ -1,0 +1,37 @@
+﻿@page "/Emails"
+@using Model;
+
+
+<h3>Emails</h3>
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Receiver</th>
+        <th>Subject</th>
+        <th>Body</th>
+        <th>Status</th>
+    </tr>
+    @foreach (var mail in Emails)
+{
+    <tr>
+            <td>@mail.Id</td>
+            <td>@mail.Receiver</td>
+            <td>@mail.Subject</td>
+            <td>@mail.Body</td>
+            <td>@mail.EmailStatus</td>
+    </tr>
+}
+</table>
+@code {
+
+    List<Email> Emails = new List<Email>();
+
+    const string SERVICE_NAME = "EmailsAPI";
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(TimeSpan.FromSeconds(5));
+
+        var client = new HttpClient();
+        Emails = await client.GetFromJsonAsync<List<Email>>($"{Data.Endpoints.ServicesEndpoint[SERVICE_NAME]}/Emails");
+    }
+}
