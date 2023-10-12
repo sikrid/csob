@@ -12,4 +12,4 @@
             return $"{Id} {FirstName} {LastName} {Email}";
         }
     }
-}
+ }
