@@ -29,9 +29,7 @@ namespace ClientAPI.Controllers
         [HttpGet]
         public ActionResult<Client> GetClient(int id)
         {
-            var Client = _clientService.GetClients().FirstOrDefault(x => x.Id == id);
-
-            return Ok(Client);
+            return Ok(_clientService.GetClients().FirstOrDefault(x => x.Id == id));            
         }
 
         [HttpPost]
