@@ -21,7 +21,7 @@ public partial class User
     {
         LoginState = LoginStatus.LoggingIn;
 
-        Client = await Http.GetFromJsonAsync<Client>($"https://api.example.com/login/{_userEmail}");
+        Client = await Http.GetFromJsonAsync<Client>($"http://localhost:5025/login/{_userEmail}");
 
         if (Client is not null)
         {
@@ -45,7 +45,7 @@ public partial class User
     {
         if (Client is not null)
         {
-            _loanRequests = await Http.GetFromJsonAsync<List<LoanRequest>>($"https://api.example.com/loanrequests/getlist/{Client.Id}");
+            _loanRequests = await Http.GetFromJsonAsync<List<LoanRequest>>($"http://localhost:5025/loanrequest/getlist/{Client.Id}");
             StateHasChanged();
         }
     }
