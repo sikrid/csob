@@ -34,7 +34,7 @@ namespace LoanRequestAPI.Controllers
 
             _loanRequestService.CreateLoanRequest(loanRequest);
 
-            return Ok(loanRequest.Id);
+            return Ok(loanRequest);
         }
 
         [Route("client/{id}")]

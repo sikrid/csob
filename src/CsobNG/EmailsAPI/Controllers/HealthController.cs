@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using EmailsAPI.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EmailsAPI.Controllers
 {
@@ -6,11 +7,25 @@ namespace EmailsAPI.Controllers
     [ApiController]
     public class HealthController : ControllerBase
     {
-        [HttpGet("")]
+		EmailService _emailService;
+
+		public HealthController(EmailService emailService)
+		{
+			_emailService = emailService;
+		}
+
+		[HttpGet("")]
 
         public ActionResult<string> GetStatus()
         {
-            return Ok("healthy");
-        }
+			if (!_emailService.TryDbConnection())
+			{
+				return Ok("DB Disconnect");
+			}
+			else
+			{
+				return Ok("healthy");
+			}
+		}
     }
 }
