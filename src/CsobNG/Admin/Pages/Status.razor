@@ -42,7 +42,7 @@
 			string status = "";
 			try
 			{
-				 status = await client.GetStringAsync($"{endpoint.Value}/health");
+				status = await client.GetStringAsync($"{endpoint.Value}/health");
 			}
 			catch (Exception ex)
 			{
@@ -78,11 +78,11 @@
 			case "HEALTHY":
 				return "text-success";
 			case "UNHEALTHY":
+			case "DB DISCONNECT":
+			case "ENDPOINT ERROR":
 				return "text-danger";
 			case "WARN":
 				return "text-warning";
-			case "ENDPOINT ERROR":
-				return "text-danger";
 			default:
 				return "text-info";
 		}

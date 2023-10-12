@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ClientAPI.Services;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClientAPI.Controllers
@@ -7,11 +9,25 @@ namespace ClientAPI.Controllers
     [ApiController]
     public class HealthController : ControllerBase
     {
-        [HttpGet("")]
+		DbService _dbService;
+
+		public HealthController(DbService dbService)
+		{
+			_dbService = dbService;
+		}
+
+		[HttpGet("")]
         
         public ActionResult<string> GetStatus()
         {
-            return Ok("healthy");
+			if (!_dbService.TryDbConnection())
+			{
+                return Ok("DB Disconnect");
+			}
+            else
+            {
+                return Ok("helathy");
+            }
         }
     }
 }
