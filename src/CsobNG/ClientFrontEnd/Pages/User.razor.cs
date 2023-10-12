@@ -13,6 +13,8 @@ public partial class User
 
     private List<LoanRequest>? _loanRequests = new();
 
+    private LoanRequest? _loanRequest = new();
+
     private LoginStatus LoginState { get; set; } = LoginStatus.NotLoggedIn;
 
     private Client? Client { get; set; } = new();
@@ -48,6 +50,12 @@ public partial class User
             _loanRequests = await Http.GetFromJsonAsync<List<LoanRequest>>($"http://localhost:5025/loanrequest/getlist/{Client.Id}");
             StateHasChanged();
         }
+    }
+
+    private async Task SendLoanRequest()
+    {
+        await Http.PostAsJsonAsync($"http://localhost:5025/loanrequest/", _loanRequest);
+        await GetLoanRequests();
     }
 
     private enum LoginStatus
