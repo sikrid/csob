@@ -34,6 +34,6 @@
         await Task.Delay(TimeSpan.FromSeconds(5));
 
         var client = new HttpClient();
-        LoanRequests = await client.GetFromJsonAsync<List<LoanRequest>>($"{Data.Endpoints.ServicesEndpoint[SERVICE_NAME]}/Requests");
+        LoanRequests = await client.GetFromJsonAsync<List<LoanRequest>>($"{Data.Endpoints.ServicesEndpoint[SERVICE_NAME]}/LoanRequest");
     }
 }
