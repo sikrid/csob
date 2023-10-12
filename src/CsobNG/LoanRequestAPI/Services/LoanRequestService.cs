@@ -1,5 +1,8 @@
-﻿using LoanRequestAPI.Data;
+﻿using System.Text;
+using System;
+using LoanRequestAPI.Data;
 using Model;
+using System.Text.Json;
 
 namespace LoanRequestAPI.Services
 {
@@ -12,10 +15,13 @@ namespace LoanRequestAPI.Services
             _context = context;
         }
 
-        internal void CreateLoanRequest(LoanRequest loanRequest)
+        internal async void CreateLoanRequest(LoanRequest loanRequest)
         {
             _context.LoanRequests.Add(loanRequest);
             _context.SaveChanges();
+
+            string email = await GetClientEmail(loanRequest.ClientId);
+            SendEmail(MessageBodyType.Opened, email);
         }
 
         public List<LoanRequest>? GetLoanRequestsByClient(int id)
@@ -46,6 +52,29 @@ namespace LoanRequestAPI.Services
         internal object GetLoanRequests()
         {
             return _context.LoanRequests.ToList();
+        }
+
+        public async Task<string> GetClientEmail(int clientId)
+        {
+            HttpClient httpClient = new HttpClient();
+
+            var url = "http://localhost:5208";
+
+            Client client = await httpClient.GetFromJsonAsync<Client>($"{url}/Client/ById/{clientId}");
+
+            return client.Email;
+        }
+
+        public async void SendEmail(MessageBodyType messageBodyType, string emailAddress)
+        {
+            Email email = new Email() { Receiver = emailAddress, EmailStatus = EmailStaus.Ready, Body = messageBodyType };
+
+            var json = JsonSerializer.Serialize(email);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+            var url = "http://localhost:5032/Email";
+            using var httpClient = new HttpClient();
+
+            var response = await httpClient.PostAsync(url, data);
         }
     }
 }
