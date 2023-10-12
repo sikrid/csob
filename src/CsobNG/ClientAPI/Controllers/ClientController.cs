@@ -6,7 +6,7 @@ using Model;
 
 namespace ClientAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class ClientController : ControllerBase
     {

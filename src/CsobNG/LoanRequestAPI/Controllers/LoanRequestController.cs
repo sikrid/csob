@@ -5,7 +5,7 @@ using Model;
 
 namespace LoanRequestAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class LoanRequestController : ControllerBase
     {
