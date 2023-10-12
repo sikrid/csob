@@ -19,16 +19,23 @@ namespace ClientBFF.Controllers
         {
             HttpClient http = new HttpClient();
 
-            var list = await http.GetFromJsonAsync<List<LoanRequest>>($"{LoanRequestAPIurl}/loanrequest/client/{id}");
-
-            if (list == null)
+            try
             {
-                return NotFound(list);
-            }
-            else
-            {
+                var list = await http.GetFromJsonAsync<List<LoanRequest>>($"{LoanRequestAPIurl}/loanrequest/client/{id}");
                 return Ok(list);
             }
+            catch (Exception ex)
+            {
+                return Ok(new List<LoanRequest>());
+            }
+            //if (list == null)
+            //{
+            //    return NotFound(list);
+            //}
+            //else
+            //{
+            //    return Ok(list);
+            //}
         }
 
         [Route("{loanRequest}")]

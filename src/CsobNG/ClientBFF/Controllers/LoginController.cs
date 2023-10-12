@@ -17,7 +17,7 @@ namespace ClientBFF.Controllers
         {
             HttpClient http = new HttpClient();
 
-            var client = await http.GetFromJsonAsync<Client>($"{ClientAPIurl}/ByEmail/{email}");
+            var client = await http.GetFromJsonAsync<Client>($"{ClientAPIurl}/Client/ByEmail/{email}");
 
             if (client == null)
             {
