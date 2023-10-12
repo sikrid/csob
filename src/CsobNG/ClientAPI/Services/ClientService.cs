@@ -18,7 +18,7 @@ namespace ClientAPI.Services
             return _context.Clients.ToList();
         }
 
-        public void AddClient(Client client)
+        public void CreateClient(Client client)
         {
             _context.Clients.Add(client);
             _context.SaveChanges();
