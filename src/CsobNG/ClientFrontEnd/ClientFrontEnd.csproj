@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EmailsAPI\EmailsAPI.csproj" />
     <ProjectReference Include="..\Model\Model.csproj" />
   </ItemGroup>
 
