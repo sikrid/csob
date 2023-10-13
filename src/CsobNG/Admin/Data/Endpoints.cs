@@ -8,9 +8,9 @@
         public static Dictionary<string, string> ServicesEndpoint =
             new Dictionary<string, string>()
             {
-                {"ClientAPI", "http://localhost:5208" },
-                {"LoanAPI", "http://localhost:5174" },
-                {"EmailsAPI", "http://localhost:5032" },
+                {"ClientAPI", "http://clientapi" },
+                {"LoanAPI", "http://loanrequestapi" },
+                {"EmailsAPI", "http://emailsapi" },
                 {"ClientBFF", "http://localhost:5025" },
             };
 
