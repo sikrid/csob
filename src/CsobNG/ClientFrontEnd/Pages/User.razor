@@ -25,6 +25,11 @@ else if(LoginState == LoginStatus.LoggedIn && Client is not null)
         }
     }
 
+    <p>Request a loan</p>
+    <p>Amount: </p>
+    <InputNumber @bind-Value="_loanRequest.RequestedAmount" />
+    <button @onclick="SendLoanRequest">Send Loan Request</button>
+
     <button @onclick="Logout">Logout</button>
 }
 else if (LoginState == LoginStatus.LoggingIn)
