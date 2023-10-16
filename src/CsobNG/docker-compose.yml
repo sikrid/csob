@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+  emailsapi:
+    image: ${DOCKER_REGISTRY-}emailsapi
+    build:
+      context: .
+      dockerfile: EmailsAPI/Dockerfile
+
+  loanrequestapi:
+    image: ${DOCKER_REGISTRY-}loanrequestapi
+    build:
+      context: .
+      dockerfile: LoanRequestAPI/Dockerfile
+
+
+  clientapi:
+    image: ${DOCKER_REGISTRY-}clientapi
+    build:
+      context: .
+      dockerfile: ClientAPI/Dockerfile
+
+
+  admin:
+    image: ${DOCKER_REGISTRY-}admin
+    build:
+      context: .
+      dockerfile: Admin/Dockerfile
+

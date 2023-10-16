@@ -17,9 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Admin", "Admin\Admin.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj", "{0FC332B7-2815-452C-A80A-49087778449D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Faker", "Faker\Faker.csproj", "{6919E4C7-6C3D-4258-8D06-F6E2268155AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Faker", "Faker\Faker.csproj", "{6919E4C7-6C3D-4258-8D06-F6E2268155AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakerTest", "FakerTest\FakerTest.csproj", "{6EA86232-3195-41A7-A1AC-9F142B39FD4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FakerTest", "FakerTest\FakerTest.csproj", "{6EA86232-3195-41A7-A1AC-9F142B39FD4E}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{C4D69932-FAE2-4AE4-BB33-9822D920F0E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{6EA86232-3195-41A7-A1AC-9F142B39FD4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EA86232-3195-41A7-A1AC-9F142B39FD4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EA86232-3195-41A7-A1AC-9F142B39FD4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4D69932-FAE2-4AE4-BB33-9822D920F0E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4D69932-FAE2-4AE4-BB33-9822D920F0E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4D69932-FAE2-4AE4-BB33-9822D920F0E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4D69932-FAE2-4AE4-BB33-9822D920F0E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
